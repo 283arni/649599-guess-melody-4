@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`WelcomeScreen 1`] = `
+exports[`render WelcomeScreen 1`] = `
 <section
   className="welcome"
 >
@@ -16,7 +16,7 @@ exports[`WelcomeScreen 1`] = `
   </div>
   <button
     className="welcome__button"
-    onClick={[Function]}
+    onClick={[MockFunction]}
   >
     <span
       className="visually-hidden"
