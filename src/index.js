@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import App from './components/app/app.jsx';
-import {Settings} from './mocks/data/index.js';
+import App from './components/app/app';
+import {Settings} from './mocks/data/const';
+import questions from './mocks/data/questions';
 
 ReactDom.render(
     <App
-      errorsCount = {Settings.ERRORS_COUNT}
+      errorsCount={Settings.ERRORS_COUNT}
+      questions={questions}
     />,
     document.querySelector(`#root`)
 );

@@ -1,14 +1,14 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import WelcomeScreen from './welcome-screen.jsx';
-import {Settings, spaceHandler} from '../../mocks/test/base.js';
+import {Settings} from '../../mocks/test/base.js';
 
 
-it(`WelcomeScreen`, () => {
+it(`render WelcomeScreen`, () => {
   const tree = renderer.create(
       <WelcomeScreen
         errorsCount={Settings.ERRORS_COUNT}
-        onWelcomeScreenButtonClick={spaceHandler}
+        onWelcomeScreenButtonClick={jest.fn()}
       />
   ).toJSON();
 
