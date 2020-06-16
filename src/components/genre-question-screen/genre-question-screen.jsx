@@ -1,6 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import {GameType} from "../../const.js";
+import {GameType} from "../../mocks/data/const";
 
 class GenreQuestionScreen extends PureComponent {
   constructor(props) {
@@ -25,7 +25,7 @@ class GenreQuestionScreen extends PureComponent {
 
           <svg xmlns="http://www.w3.org/2000/svg" className="timer" viewBox="0 0 780 780">
             <circle className="timer__line" cx="390" cy="390" r="370"
-              style="filter: url(#blur); transform: rotate(-90deg) scaleY(-1); transform-origin: center"/>
+              style={{filter: `url(#blur)`, transform: `rotate(-90deg) scaleY(-1)`, transformOrigin: `center`}}/>
           </svg>
 
           <div className="game__mistakes">
@@ -37,7 +37,13 @@ class GenreQuestionScreen extends PureComponent {
 
         <section className="game__screen">
           <h2 className="game__title">Выберите {genre} треки</h2>
-          <form className="game__tracks">
+          <form
+            className="game__tracks"
+            onSubmit={(evt) => {
+              evt.preventDefault();
+              onAnswer(question, this.state.answers);
+            }}
+          >
             {answers.map((answer, i) => (
               <div key={`${i}-${answer.src}`} className="track">
                 <button className="track__button track__button--play" type="button"></button>

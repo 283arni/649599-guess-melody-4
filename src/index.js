@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import App from './components/app/app';
 import {Settings} from './mocks/data/const';
-import {questions} from './mocks/data/questions';
+import questions from './mocks/data/questions';
 
 ReactDom.render(
     <App
