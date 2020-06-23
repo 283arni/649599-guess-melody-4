@@ -8,8 +8,12 @@ it(`render ArtistQuestionScreen`, () => {
       <ArtistQuestionScreen
         question={questionArtist}
         onAnswer={jest.fn()}
-      />
-  ).toJSON();
+        renderPlayer={jest.fn()}
+      />, {
+        createNodeMock: () => {
+          return {};
+        }
+      }).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

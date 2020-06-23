@@ -14,6 +14,7 @@ it(`form GenreQuestionScreen is not sent`, () => {
       <GenreQuestionScreen
         onAnswer={onAnswer}
         question={questionGenre}
+        renderPlayer={jest.fn()}
       />
   );
 
@@ -35,6 +36,7 @@ it(`user ansver and prop "gamerAnswes" is match`, () => {
       <GenreQuestionScreen
         onAnswer={onAnswer}
         question={questionGenre}
+        renderPlayer={jest.fn()}
       />
   );
 
