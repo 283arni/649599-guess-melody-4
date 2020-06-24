@@ -14,6 +14,7 @@ const mockEvent = {
 
 it(`Click on user answer should pass to the callback data-object from which this answer was created`, () => {
   const onAnswer = jest.fn();
+  const renderPlayer = jest.fn();
   const gamerAnswer = {
     artist: `John Snow`,
     picture: `https://api.adorable.io/avatars/128/0`,
@@ -23,6 +24,7 @@ it(`Click on user answer should pass to the callback data-object from which this
       <ArtistQuestionScreen
         question={questionArtist}
         onAnswer={onAnswer}
+        renderPlayer={renderPlayer}
       />
   );
 
