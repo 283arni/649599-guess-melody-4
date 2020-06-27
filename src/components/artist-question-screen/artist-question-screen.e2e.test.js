@@ -18,7 +18,7 @@ const renderPlayer = jest.fn();
 it(`Click on user answer should pass to the callback data-object from which this answer was created`, () => {
   const gamerAnswer = {
     artist: `John Snow`,
-    picture: `https://api.adorable.io/avatars/128/0`,
+    picture: `https://api.adorable.io/avatars/128/A`,
   };
 
   const artistQuestion = shallow(

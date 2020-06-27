@@ -2,7 +2,7 @@ import React from "react";
 import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import WelcomeScreen from "./welcome-screen";
-import {Settings} from '../../mocks/test/base.js';
+import {maxMistakes} from '../../mocks/test/base.js';
 
 Enzyme.configure({
   adapter: new Adapter()
@@ -14,7 +14,7 @@ it(`Press button in Welcom`, () => {
 
   const welcomeScreen = shallow(
       <WelcomeScreen
-        errorsCount={Settings.ERRORS_COUNT}
+        errorsCount={maxMistakes}
         onWelcomeScreenButtonClick={onWelcomeScreenButtonClick}
       />
   );
