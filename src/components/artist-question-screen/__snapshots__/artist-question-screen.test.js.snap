@@ -37,7 +37,7 @@ exports[`render ArtistQuestionScreen 1`] = `
         <img
           alt="John Snow"
           className="artist__picture"
-          src="https://api.adorable.io/avatars/128/0"
+          src="https://api.adorable.io/avatars/128/A"
         />
         John Snow
       </label>
@@ -60,7 +60,7 @@ exports[`render ArtistQuestionScreen 1`] = `
         <img
           alt="Jack Daniels"
           className="artist__picture"
-          src="https://api.adorable.io/avatars/128/1"
+          src="https://api.adorable.io/avatars/128/AB"
         />
         Jack Daniels
       </label>
@@ -83,7 +83,7 @@ exports[`render ArtistQuestionScreen 1`] = `
         <img
           alt="Jim Beam"
           className="artist__picture"
-          src="https://api.adorable.io/avatars/128/2"
+          src="https://api.adorable.io/avatars/128/AC"
         />
         Jim Beam
       </label>

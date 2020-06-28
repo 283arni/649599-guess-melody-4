@@ -8,10 +8,17 @@ class GenreQuestionScreen extends PureComponent {
     this.state = {
       answers: [false, false, false, false]
     };
+
+    this.handleAnswerSubmit = this.handleAnswerSubmit.bind(this);
+  }
+
+  handleAnswerSubmit(evt) {
+    evt.preventDefault();
+    this.props.onAnswer(this.props.question, this.state.answers);
   }
 
   render() {
-    const {onAnswer, question, renderPlayer} = this.props;
+    const {question, renderPlayer} = this.props;
     const {answers: gamerAnswers} = this.state;
     const {answers, genre} = question;
 
@@ -20,10 +27,7 @@ class GenreQuestionScreen extends PureComponent {
         <h2 className="game__title">Выберите {genre} треки</h2>
         <form
           className="game__tracks"
-          onSubmit={(evt) => {
-            evt.preventDefault();
-            onAnswer(question, this.state.answers);
-          }}
+          onSubmit={this.handleAnswerSubmit}
         >
           {answers.map((answer, i) => (
             <div key={`${i}-${answer.src}`} className="track">
