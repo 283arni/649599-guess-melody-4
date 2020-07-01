@@ -1,5 +1,5 @@
 import React from "react";
-import Enzyme, {shallow} from "enzyme";
+import Enzyme, {shallow, mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import GenreQuestionScreen from './genre-question-screen';
 import {questionGenre} from '../../mocks/test/questions';
@@ -9,6 +9,7 @@ Enzyme.configure({
 });
 
 const onAnswer = jest.fn();
+const onChange = jest.fn();
 const renderPlayer = jest.fn();
 const onAnswerClick = jest.fn((...args) => [...args]);
 
@@ -19,6 +20,8 @@ it(`form GenreQuestionScreen is not sent`, () => {
         onAnswer={onAnswer}
         question={questionGenre}
         renderPlayer={renderPlayer}
+        onChange={onChange}
+        gamerAnswers={[false, false, false, false]}
       />
   );
 
@@ -35,11 +38,13 @@ it(`form GenreQuestionScreen is not sent`, () => {
 it(`user ansver and prop "gamerAnswes" is match`, () => {
   const gamerAnswers = [false, true, false, false];
 
-  const genreQuestion = shallow(
+  const genreQuestion = mount(
       <GenreQuestionScreen
         onAnswer={onAnswerClick}
         question={questionGenre}
         renderPlayer={renderPlayer}
+        onChange={onChange}
+        gamerAnswers={gamerAnswers}
       />
   );
 
@@ -50,7 +55,6 @@ it(`user ansver and prop "gamerAnswes" is match`, () => {
   form.simulate(`submit`, {preventDefault() {}});
 
   expect(onAnswerClick).toHaveBeenCalled();
-  expect(onAnswerClick.mock.calls[0][0]).toMatchObject(questionGenre);
-  expect(onAnswerClick.mock.calls[0][1]).toMatchObject(gamerAnswers);
+  expect(onAnswer.mock.calls[0][0]).toEqual(undefined);
   expect(genreQuestion.find(`input`).map((item) => item.prop(`checked`))).toEqual(gamerAnswers);
 });
