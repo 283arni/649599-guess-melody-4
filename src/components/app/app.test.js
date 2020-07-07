@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {App} from './app.jsx';
-import {maxMistakes} from '../../mocks/test/base.js';
+import {App} from './app';
+import {maxMistakes} from '../../mocks/test/base';
 import {questionArtist, questionGenre} from '../../mocks/test/questions';
 import {Provider} from 'react-redux';
 import configureStore from "redux-mock-store";

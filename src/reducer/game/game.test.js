@@ -1,14 +1,12 @@
-import {reducer, ActionCreator, ActionType} from './reducer';
-import {questionArtist, questionGenre} from './mocks/test/questions';
+import {reducer, ActionCreator, ActionType} from "./game.js";
+import {questionArtist, questionGenre} from '../../mocks/test/questions';
 
-const questions = [questionGenre, questionArtist];
 
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(reducer(undefined, {})).toEqual({
     step: -1,
     mistakes: 0,
-    maxMistakes: 3,
-    questions,
+    maxMistakes: 3
   });
 });
 
@@ -16,27 +14,23 @@ it(`Reducer should increment current step by a given value`, () => {
   expect(reducer({
     step: -1,
     mistakes: 0,
-    questions
   }, {
     type: ActionType.INCREMENT_STEP,
     payload: 1,
   })).toEqual({
     step: 0,
     mistakes: 0,
-    questions
   });
 
   expect(reducer({
     step: -1,
     mistakes: 0,
-    questions
   }, {
     type: ActionType.INCREMENT_STEP,
     payload: 0,
   })).toEqual({
     step: -1,
     mistakes: 0,
-    questions
   });
 });
 
@@ -44,27 +38,23 @@ it(`Reducer should increment number of mistakes by a given value`, () => {
   expect(reducer({
     step: -1,
     mistakes: 0,
-    questions
   }, {
     type: ActionType.INCREMENT_MISTAKES,
     payload: 1,
   })).toEqual({
     step: -1,
     mistakes: 1,
-    questions
   });
 
   expect(reducer({
     step: -1,
     mistakes: 0,
-    questions
   }, {
     type: ActionType.INCREMENT_MISTAKES,
     payload: 0,
   })).toEqual({
     step: -1,
     mistakes: 0,
-    questions
   });
 });
 
@@ -116,7 +106,6 @@ it(`Reducer should return default`, () => {
     step: 0,
     mistakes: 0,
     maxMistakes: 3,
-    questions,
   });
 
   expect(reducer({
@@ -129,7 +118,6 @@ it(`Reducer should return default`, () => {
     step: 0,
     mistakes: 0,
     maxMistakes: 3,
-    questions,
   });
 
   expect(reducer({
@@ -142,7 +130,6 @@ it(`Reducer should return default`, () => {
     step: 0,
     mistakes: 0,
     maxMistakes: 3,
-    questions,
   });
 });
 
