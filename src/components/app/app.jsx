@@ -2,16 +2,21 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer.js";
+import {ActionCreator} from "../../reducer/game/game";
+// import {AuthorizationStatus} from "../../mocks/const";
 import WelcomeScreen from '../welcome-screen/welcome-screen';
 import {GameScreen} from '../game-screen/game-screen';
 import ArtistQuestionScreen from "../artist-question-screen/artist-question-screen";
 import GenreQuestionScreen from "../genre-question-screen/genre-question-screen";
-import {GameType} from "../../mocks/data/const";
+import {GameType} from "../../mocks/const";
 import withActivePlayer from "../../hocs/with-audio-player/with-audio-player";
 import withUserAnswer from "../../hocs/with-user-answer/with-user-answer";
-import GameOverScreen from "../game-over-screen/game-over-screen.jsx";
-import WinScreen from "../win-screen/win-screen.jsx";
+import GameOverScreen from "../game-over-screen/game-over-screen";
+import WinScreen from "../win-screen/win-screen";
+import {getStep, getMistakes, getMaxMistakes} from "../../reducer/game/selectors.js";
+import {getQuestions} from "../../reducer/data/selectors.js";
+import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
+import {Operation as UserOperation} from "../../reducer/user/user.js";
 
 const GenreQuestionScreenWrapped = withActivePlayer(withUserAnswer(GenreQuestionScreen));
 const ArtistQuestionScreenWrapped = withActivePlayer(ArtistQuestionScreen);
@@ -111,13 +116,17 @@ class App extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-  step: state.step,
-  maxMistakes: state.maxMistakes,
-  questions: state.questions,
-  mistakes: state.mistakes,
+  authorizationStatus: getAuthorizationStatus(state),
+  step: getStep(state),
+  maxMistakes: getMaxMistakes(state),
+  questions: getQuestions(state),
+  mistakes: getMistakes(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  login(authData) {
+    dispatch(UserOperation.login(authData));
+  },
   onWelcomeButtonClick() {
     dispatch(ActionCreator.incrementStep());
   },

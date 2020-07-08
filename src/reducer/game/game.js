@@ -1,11 +1,10 @@
-import {extend} from './utils';
-import {GameType} from './mocks/data/const';
-import questions from './mocks/data/questions';
+import {extend} from '../../utils';
+import {GameType} from '../../mocks/const';
+
 
 const initialState = {
   mistakes: 0,
   step: -1,
-  questions,
   maxMistakes: 3
 };
 
@@ -14,6 +13,7 @@ const ActionType = {
   INCREMENT_STEP: `INCREMENT_STEP`,
   RESET: `RESET`,
 };
+
 
 const ActionCreator = {
   incrementStep: () => ({
