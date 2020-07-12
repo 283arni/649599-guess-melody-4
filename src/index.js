@@ -9,6 +9,7 @@ import {AuthorizationStatus} from './mocks/const';
 import {createApi} from "./api";
 import {Provider} from 'react-redux';
 import App from './components/app/app';
+import {composeWithDevTools} from "redux-devtools-extension";
 
 const onUnauthorized = () => {
   store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
@@ -18,7 +19,9 @@ const api = createApi(onUnauthorized);
 
 
 const store = createStore(reducer,
-    applyMiddleware(thunk.withExtraArgument(api))
+    composeWithDevTools(
+        applyMiddleware(thunk.withExtraArgument(api))
+    )
 );
 
 store.dispatch(DataOperation.loadQuestions());

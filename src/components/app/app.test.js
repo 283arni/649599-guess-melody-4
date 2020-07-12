@@ -5,21 +5,28 @@ import {maxMistakes} from '../../mocks/test/base';
 import {questionArtist, questionGenre} from '../../mocks/test/questions';
 import {Provider} from 'react-redux';
 import configureStore from "redux-mock-store";
+import NameSpace from "../../reducer/name-space";
+import {AuthorizationStatus} from "../../mocks/const";
 
 const mockStore = configureStore([]);
 
 const onUserAnswer = jest.fn();
 const onWelcomeButtonClick = jest.fn();
 const resetGame = jest.fn();
+const login = jest.fn();
 
 it(`render App`, () => {
   const store = mockStore({
-    mistakes: 0,
+    [NameSpace.GAME]: {
+      mistakes: 0,
+    },
   });
 
   const tree = renderer.create(
       <Provider store={store}>
         <App
+          authorizationStatus={AuthorizationStatus.NO_AUTH}
+          login={login}
           maxMistakes={maxMistakes}
           questions={[questionGenre, questionArtist]}
           mistakes={0}
@@ -35,13 +42,17 @@ it(`render App`, () => {
 
 it(`Render GenreQuestionScreen`, () => {
   const store = mockStore({
-    mistakes: 3,
+    [NameSpace.GAME]: {
+      mistakes: 3,
+    },
   });
 
   const tree = renderer
     .create(
         <Provider store={store}>
           <App
+            authorizationStatus={AuthorizationStatus.NO_AUTH}
+            login={login}
             maxMistakes={maxMistakes}
             questions={[questionGenre, questionArtist]}
             mistakes={0}
@@ -62,13 +73,17 @@ it(`Render GenreQuestionScreen`, () => {
 
 it(`Render ArtistQuestionScreen`, () => {
   const store = mockStore({
-    mistakes: 3,
+    [NameSpace.GAME]: {
+      mistakes: 3,
+    },
   });
 
   const tree = renderer
     .create(
         <Provider store={store}>
           <App
+            authorizationStatus={AuthorizationStatus.NO_AUTH}
+            login={login}
             maxMistakes={maxMistakes}
             questions={[questionGenre, questionArtist]}
             mistakes={0}
@@ -89,13 +104,17 @@ it(`Render ArtistQuestionScreen`, () => {
 
 it(`Render GameOverScreen`, () => {
   const store = mockStore({
-    mistakes: 3,
+    [NameSpace.GAME]: {
+      mistakes: 3,
+    },
   });
 
   const tree = renderer
     .create(
         <Provider store={store}>
           <App
+            authorizationStatus={AuthorizationStatus.NO_AUTH}
+            login={login}
             maxMistakes={3}
             mistakes={3}
             resetGame={resetGame}
@@ -117,18 +136,23 @@ it(`Render GameOverScreen`, () => {
 it(`Render WinScreen`, () => {
   const store = mockStore({
     mistakes: 3,
+    [NameSpace.GAME]: {
+      mistakes: 3,
+    },
   });
 
   const tree = renderer
     .create(
         <Provider store={store}>
           <App
-            maxMistakes={3}
+            authorizationStatus={AuthorizationStatus.AUTH}
+            login={login}
+            maxMistakes={maxMistakes}
             mistakes={0}
-            resetGame={resetGame}
             questions={[questionGenre, questionArtist]}
-            onUserAnswer={() => {}}
-            onWelcomeButtonClick={() => {}}
+            onUserAnswer={onUserAnswer}
+            onWelcomeButtonClick={onWelcomeButtonClick}
+            resetGame={resetGame}
             step={3}
           />
         </Provider>, {
@@ -138,5 +162,35 @@ it(`Render WinScreen`, () => {
         })
     .toJSON();
 
+  expect(tree).toMatchSnapshot();
+});
+
+it(`Render AuthScreen`, () => {
+  const store = mockStore({
+    [NameSpace.GAME]: {
+      mistakes: 3,
+    },
+  });
+
+  const tree = renderer
+    .create(
+        <Provider store={store}>
+          <App
+            authorizationStatus={AuthorizationStatus.NO_AUTH}
+            login={login}
+            maxMistakes={maxMistakes}
+            mistakes={0}
+            questions={[questionGenre, questionArtist]}
+            onUserAnswer={onUserAnswer}
+            onWelcomeButtonClick={onWelcomeButtonClick}
+            resetGame={resetGame}
+            step={3}
+          />
+        </Provider>, {
+          createNodeMock: () => {
+            return {};
+          }
+        })
+    .toJSON();
   expect(tree).toMatchSnapshot();
 });
