@@ -1,5 +1,5 @@
 import {extend} from '../../utils';
-import {GameType} from '../../mocks/const';
+import {GameType} from '../../const';
 
 
 const initialState = {
@@ -12,6 +12,17 @@ const ActionType = {
   INCREMENT_MISTAKES: `INCREMENT_MISTAKES`,
   INCREMENT_STEP: `INCREMENT_STEP`,
   RESET: `RESET`,
+  GO_TO_WELCOME: `GO_TO_WELCOME`,
+};
+
+const isArtistAnswerCorrect = (question, gamerAnswer) => {
+  return question.song.artist === gamerAnswer.artist;
+};
+
+const isGenreAnswerCorrect = (question, gamerAnswer) => {
+  return gamerAnswer.every((item, i) => {
+    return item === (question.answers[i].genre === question.genre);
+  });
 };
 
 
@@ -43,23 +54,19 @@ const ActionCreator = {
       payload: null,
     };
   },
+  goToWelcome: () => {
+    return {
+      type: ActionType.GO_TO_WELCOME,
+      payload: null,
+    };
+  },
 };
 
-const isArtistAnswerCorrect = (question, gamerAnswer) => {
-  return question.song.artist === gamerAnswer.artist;
-};
-
-const isGenreAnswerCorrect = (question, gamerAnswer) => {
-  return gamerAnswer.every((item, i) => {
-    return item === (question.answers[i].genre === question.genre);
-  });
-};
 
 const reducer = (state = initialState, action) => {
 
   switch (action.type) {
     case ActionType.INCREMENT_STEP:
-
       return extend(state, {
         step: state.step + action.payload,
       });
@@ -72,6 +79,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.RESET:
       return extend(initialState, {
         step: 0,
+      });
+    case ActionType.GO_TO_WELCOME:
+      return extend(initialState, {
+        step: -1,
       });
   }
 

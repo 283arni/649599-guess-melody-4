@@ -9,7 +9,8 @@ exports[`Render ArtistQuestionScreen 1`] = `
   >
     <a
       className="game__back"
-      href="#"
+      href="/"
+      onClick={[Function]}
     >
       <span
         className="visually-hidden"
@@ -323,13 +324,13 @@ exports[`Render GameOverScreen 1`] = `
   >
     У вас закончились все попытки. Ничего, повезёт в следующий раз!
   </p>
-  <button
+  <a
     className="replay"
-    onClick={[MockFunction]}
-    type="button"
+    href="/"
+    onClick={[Function]}
   >
     Попробовать ещё раз
-  </button>
+  </a>
 </section>
 `;
 
@@ -342,7 +343,8 @@ exports[`Render GenreQuestionScreen 1`] = `
   >
     <a
       className="game__back"
-      href="#"
+      href="/"
+      onClick={[Function]}
     >
       <span
         className="visually-hidden"
@@ -577,13 +579,13 @@ exports[`Render WinScreen 1`] = `
     0
      ошибки
   </p>
-  <button
+  <a
     className="replay"
-    onClick={[MockFunction]}
-    type="button"
+    href="/"
+    onClick={[Function]}
   >
     Сыграть ещё раз
-  </button>
+  </a>
 </section>
 `;
 

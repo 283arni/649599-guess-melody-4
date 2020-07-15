@@ -1,5 +1,5 @@
 import {extend} from '../../utils';
-import {AuthorizationStatus} from '../../mocks/const';
+import {AuthorizationStatus} from '../../const';
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,

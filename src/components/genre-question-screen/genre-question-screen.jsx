@@ -1,6 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import {GameType} from "../../mocks/const";
+import {GameType} from "../../const";
 import GenreQuestionItem from "../genre-question-item/genre-question-item";
 
 class GenreQuestionScreen extends PureComponent {
