@@ -6,7 +6,7 @@ import {questionArtist, questionGenre} from '../../mocks/test/questions';
 import {Provider} from 'react-redux';
 import configureStore from "redux-mock-store";
 import NameSpace from "../../reducer/name-space";
-import {AuthorizationStatus} from "../../mocks/const";
+import {AuthorizationStatus} from "../../const";
 
 const mockStore = configureStore([]);
 
@@ -19,6 +19,9 @@ it(`render App`, () => {
   const store = mockStore({
     [NameSpace.GAME]: {
       mistakes: 0,
+    },
+    [NameSpace.USER]: {
+      authorizationStatus: AuthorizationStatus.NO_AUTH,
     },
   });
 
@@ -135,9 +138,11 @@ it(`Render GameOverScreen`, () => {
 
 it(`Render WinScreen`, () => {
   const store = mockStore({
-    mistakes: 3,
     [NameSpace.GAME]: {
-      mistakes: 3,
+      mistakes: 5,
+    },
+    [NameSpace.USER]: {
+      authorizationStatus: AuthorizationStatus.AUTH,
     },
   });
 
@@ -169,6 +174,9 @@ it(`Render AuthScreen`, () => {
   const store = mockStore({
     [NameSpace.GAME]: {
       mistakes: 3,
+    },
+    [NameSpace.USER]: {
+      authorizationStatus: AuthorizationStatus.NO_AUTH,
     },
   });
 

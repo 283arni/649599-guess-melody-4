@@ -5,7 +5,7 @@ import thunk from "redux-thunk";
 import reducer from "./reducer/reducer";
 import {Operation as DataOperation} from "./reducer/data/data";
 import {Operation as UserOperation, ActionCreator} from "./reducer/user/user";
-import {AuthorizationStatus} from './mocks/const';
+import {AuthorizationStatus} from './const';
 import {createApi} from "./api";
 import {Provider} from 'react-redux';
 import App from './components/app/app';

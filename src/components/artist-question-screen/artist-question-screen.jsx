@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {GameType} from "../../mocks/const";
+import {GameType} from "../../const";
 
 const playFirstTrack = 0;
 
